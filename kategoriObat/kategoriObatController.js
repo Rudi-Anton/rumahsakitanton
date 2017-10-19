@@ -1,0 +1,16 @@
+KategoriObat=require('./kategoriObatModel.js');
+module.exports.getKategoriObat=function(callback,limit){
+    KategoriObat.find(callback).limit(limit);
+}
+module.exports.createKategoriObat=function(kategoriobat,callback){
+    KategoriObat.create(kategoriobat,callback);
+}
+module.exports.removeKategoriObat=function(_id,callback){
+    KategoriObat.findByIdAndRemove(_id,callback);
+}
+module.exports.updateKategoriObat=function(_id,kategoriobat,callback){
+    KategoriObat.findByIdAndUpdate(_id,kategoriobat,callback);
+}
+module.exports.getKategoriObatById=function(id,callback){
+    KategoriObat.findById(id,callback);
+}
