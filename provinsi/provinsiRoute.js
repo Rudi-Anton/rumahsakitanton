@@ -37,7 +37,7 @@ route.delete('/provinsi/:_id', function (req, res) {
          res.json(respon);
      });
  });
- route.get('/provinsi/namaprovinsi/:_id', function (req, res) {
+ route.get('/namaprovinsi/:_id', function (req, res) {
      let id = req.params._id;
     ProvinsiController.getByNamaProvinsi(id, function (error, respon) {
         if (error) {
