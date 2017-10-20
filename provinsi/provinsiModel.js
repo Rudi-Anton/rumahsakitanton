@@ -9,6 +9,7 @@ let provinsi = mong.Schema({
 			kdKecamatan: String,
 			NamaKecamatan: String
 		}
-	}
+	},
+	KeteranganTambahan:String
 });
 let Provinsi = module.exports = mong.model("Provinsi", provinsi, "Provinsi");
