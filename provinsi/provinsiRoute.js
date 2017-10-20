@@ -10,6 +10,7 @@ route.get('/provinsi', function (req, res) {
         res.json(respon);
     });
 });
+
 route.post('/provinsi', function (req, res) {
     let provinsi = req.body;
     ProvinsiController.createProvinsi(provinsi,function (error, respon) {
@@ -36,7 +37,16 @@ route.delete('/provinsi/:_id', function (req, res) {
          res.json(respon);
      });
  });
- route.get('/provinsi/:_id', function (req, res) {
+ route.get('/provinsi/NamaProvinsi/:_id', function (req, res) {
+     let id = req.params._id;
+    ProvinsiController.getByNamaProvinsi(id, function (error, respon) {
+        if (error) {
+            throw error;
+        }
+        res.json(respon);
+    });
+});
+route.get('/provinsi/:_id', function (req, res) {
      let id = req.params._id;
     ProvinsiController.getProvinsiById(id, function (error, respon) {
         if (error) {
