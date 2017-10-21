@@ -2,13 +2,13 @@ let expres = require('express');
 let mong = require('mongoose');
 let bodyParser = require('body-parser');
 let app=expres();
-// global.config = require('./config/config');
+ global.config = require('./config/config');
 
-// let jwt    = require('jsonwebtoken');
-// let jwt_secret = "shhh";
+ let jwt    = require('jsonwebtoken');
+ let jwt_secret = "shhh";
 app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 8827));
-//let verifyToken = require('./middleware/verifyToken');
+let verifyToken = require('./middleware/verifyToken');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,8 +17,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+let loginRoute=require('./login/loginRoute.js');
+app.use('/api',loginRoute);
 let provinsiRoute=require('./provinsi/provinsiRoute.js');
-app.use('/api',provinsiRoute);
+app.use('/api',verifyToken,provinsiRoute);
 let kategoriObatRoute=require('./kategoriObat/kategoriObatRoute.js');
 app.use('/api',kategoriObatRoute);
 let jenisObatRoute=require('./jenisObat/jenisObatRoute.js');
