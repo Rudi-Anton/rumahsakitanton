@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 8827));
 let verifyToken = require('./middleware/verifyToken');
 
-//app.use(function(req, res, next) {
- // res.header("Access-Control-Allow-Origin", "*");
- // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  //res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS,PUT");
-  //next();
-//});
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS,PUT");
+  next();
+});
 
 let loginRoute=require('./login/loginRoute.js');
 app.use('/api',loginRoute);
